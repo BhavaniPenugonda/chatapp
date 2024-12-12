@@ -14,7 +14,7 @@ const Start= ({navigation})=>{
     '#B9C6AE'  // Light Greenish
   ];
   return (
-    <ImageBackground source={require('./assets/BackgroundImage.png')} resizeMode="cover" style={styles.backgroundImage}>
+    <ImageBackground source={require('../assets/BackgroundImage.png')} resizeMode="cover" style={styles.backgroundImage}>
     <View style={styles.container}>
       
       <Text style={styles.title}>Chat App</Text>
