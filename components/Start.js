@@ -29,7 +29,7 @@ const Start= ({navigation})=>{
       <View style={styles.colorContainer}>
           {colorOptions.map((optionColor) => (
             <TouchableOpacity
-              key={optioCcolor}
+              key={optionColor}
               style={[styles.colorCircle, { backgroundColor: optionColor }]}
               onPress={() => setColor(optionColor)}
             />
