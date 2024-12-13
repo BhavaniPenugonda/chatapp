@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around', 
     padding:20,
-    marginTop: 40,
+    marginBottom: 10,
   },
   textInput: {
     width: "88%",
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     fontSize :45, 
     fontWeight :600, 
     color :'#FFFFFF',
-    marginTop: 5,
+    margin: 25,
   },
   button: {
     backgroundColor: '#757083',
