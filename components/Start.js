@@ -19,7 +19,7 @@ const Start= ({navigation})=>{
     
       
       <Text style={styles.title}>Chat App</Text>
-      <View style={styles.box}></View>
+      <View style={styles.box}>
        <TextInput
         style={styles.textInput}
         value={name}
@@ -43,6 +43,7 @@ const Start= ({navigation})=>{
            onPress={() => navigation.navigate('Chat',{ name: name,backgroundColor:color})}>
            <Text style={styles.buttonText}>Start Chatting</Text>
         </TouchableOpacity>
+       </View> 
     </ImageBackground>
   </View>
     
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
     height: '50%', 
     alignItems: 'center',
     justifyContent: 'space-around', 
+    padding:20
   },
   textInput: {
     width: "88%",
