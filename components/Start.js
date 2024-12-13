@@ -14,19 +14,21 @@ const Start= ({navigation})=>{
     '#B9C6AE'  // Light Greenish
   ];
   return (
+  <View style={styles.container}>
     <ImageBackground source={require('../assets/BackgroundImage.png')} resizeMode="cover" style={styles.backgroundImage}>
-    <View style={styles.container}>
+    
       
       <Text style={styles.title}>Chat App</Text>
-      <TextInput
+      <View style={styles.box}></View>
+       <TextInput
         style={styles.textInput}
         value={name}
         onChangeText={setName}
         placeholder='Your Name'
         placeholderTextColor="#757083"  // Placeholder text color
-      />
-      <Text style={styles.chooseBgColor}>Choose Background Color</Text>
-      <View style={styles.colorContainer}>
+       />
+       <Text style={styles.chooseBgColor}>Choose Background Color</Text>
+       <View style={styles.colorContainer}>
           {colorOptions.map((optionColor) => (
             <TouchableOpacity
               key={optionColor}
@@ -34,17 +36,17 @@ const Start= ({navigation})=>{
               onPress={() => setColor(optionColor)}
             />
           ))}
-      </View>
+        </View>
     
-     <TouchableOpacity
+        <TouchableOpacity
            style={styles.button}
            onPress={() => navigation.navigate('Chat',{ name: name,backgroundColor:color})}>
            <Text style={styles.buttonText}>Start Chatting</Text>
-      </TouchableOpacity>
-    </View>
-      </ImageBackground>
-)
-
+        </TouchableOpacity>
+    </ImageBackground>
+  </View>
+    
+  );
 }
 
 const styles = StyleSheet.create({
@@ -53,6 +55,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    
+  },
+  box: {
+    
+    backgroundColor: '#FFFFFF',
+    borderRadius: 4,
+    width: '88%',
+    height: '50%', 
+    alignItems: 'center',
+    justifyContent: 'space-around', 
   },
   textInput: {
     width: "88%",
