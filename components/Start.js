@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     fontSize :45, 
     fontWeight :600, 
     color :'#FFFFFF',
-    marginTop: 10,
+    marginTop: 5,
   },
   button: {
     backgroundColor: '#757083',
