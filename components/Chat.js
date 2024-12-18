@@ -1,16 +1,15 @@
 
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, KeyboardAvoidingView,Platform} from 'react-native';
-import { GiftedChat } from "react-native-gifted-chat";
+import { View,  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native';
+import { GiftedChat ,Bubble} from "react-native-gifted-chat";
 
 const Chat = ({ route,navigation }) => {
   const [messages, setMessages] = useState([]);
-  const onSend = (newMessages) => {
-    setMessages(previousMessages => GiftedChat.append(previousMessages, newMessages))
-  }
+  
   const { name, backgroundColor } = route.params;
 
   useEffect(() => {
+    navigation.setOptions({ title: name });
     setMessages([
       {
         _id: 1,
@@ -30,16 +29,32 @@ const Chat = ({ route,navigation }) => {
       },
     ]);
   }, []);
-  // Set the navigation title dynamically based on the name
-  useEffect(() => {
-    navigation.setOptions({ title: name });
-  }, [name, navigation]);
+
+
+  const onSend = (newMessages) => {
+    setMessages(previousMessages => GiftedChat.append(previousMessages, newMessages))
+  }
+
+  const renderBubble = (props) => {
+    return <Bubble
+      {...props}
+      wrapperStyle={{
+        right: {
+          backgroundColor: "#000"
+        },
+        left: {
+          backgroundColor: "#FFF"
+        }
+      }}
+    />
+  }
 
 
   return (
     <View style={[styles.container, { backgroundColor }]}>
     <GiftedChat
       messages={messages}
+      renderBubble={renderBubble}
       onSend={messages => onSend(messages)}
       user={{
         _id: 1
