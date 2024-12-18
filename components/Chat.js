@@ -34,7 +34,7 @@ const Chat = ({ route,navigation }) => {
         system: true,
       },
     ]);
-  }, []);
+  }, [name, navigation]);
 
 // Function to handle sending new messages
   const onSend = (newMessages) => {
