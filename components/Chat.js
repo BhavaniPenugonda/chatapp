@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, KeyboardAvoidingView,Platform} from 'react-native';
 import { GiftedChat } from "react-native-gifted-chat";
 
 const Chat = ({ route,navigation }) => {
@@ -22,6 +22,12 @@ const Chat = ({ route,navigation }) => {
           avatar: "https://placeimg.com/140/140/any",
         },
       },
+      {
+        _id: 2,
+        text: 'This is a system message',
+        createdAt: new Date(),
+        system: true,
+      },
     ]);
   }, []);
   // Set the navigation title dynamically based on the name
@@ -39,6 +45,8 @@ const Chat = ({ route,navigation }) => {
         _id: 1
       }}
     />
+    { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null }
+    {Platform.OS === "ios"?<KeyboardAvoidingView behavior="padding" />: null}
     </View>
   )
   
