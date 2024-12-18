@@ -5,6 +5,9 @@ import { GiftedChat } from "react-native-gifted-chat";
 
 const Chat = ({ route,navigation }) => {
   const [messages, setMessages] = useState([]);
+  const onSend = (newMessages) => {
+    setMessages(previousMessages => GiftedChat.append(previousMessages, newMessages))
+  }
   const { name, backgroundColor } = route.params;
 
   useEffect(() => {
@@ -26,27 +29,27 @@ const Chat = ({ route,navigation }) => {
     navigation.setOptions({ title: name });
   }, [name, navigation]);
 
+
   return (
     <View style={[styles.container, { backgroundColor }]}>
-      <Text style={styles.greeting}>Hello, {name}!</Text>
-      
+    <GiftedChat
+      messages={messages}
+      onSend={messages => onSend(messages)}
+      user={{
+        _id: 1
+      }}
+    />
     </View>
-  );
+  )
+  
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: 24,
-    color: '#fff',
+    
   },
-  greeting: {
-    fontSize: 24,
-    fontWeight: '600',  // Adds a bolder font weight for the name
-    color: '#fff',  // Ensures text is white regardless of background color
-  },
+  
 });
 
 export default Chat;
