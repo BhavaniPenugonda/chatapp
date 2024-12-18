@@ -1,8 +1,10 @@
 
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { GiftedChat } from "react-native-gifted-chat";
 
 const Chat = ({ route,navigation }) => {
+  const [messages, setMessages] = useState([]);
   const { name, backgroundColor } = route.params;
   // Set the navigation title dynamically based on the name
   useEffect(() => {
