@@ -3,6 +3,12 @@ import React, { useEffect } from 'react';
 import { View,  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native';
 import { GiftedChat ,Bubble} from "react-native-gifted-chat";
 
+/* 
+ 
+ * Displays the user's name in the navigation bar and sets the background
+ * color of the screen based on the selection made in the Start screen.
+ */
+
 const Chat = ({ route,navigation }) => {
   const [messages, setMessages] = useState([]);
   
@@ -30,11 +36,12 @@ const Chat = ({ route,navigation }) => {
     ]);
   }, []);
 
-
+// Function to handle sending new messages
   const onSend = (newMessages) => {
     setMessages(previousMessages => GiftedChat.append(previousMessages, newMessages))
   }
 
+// Custom bubble rendering function to style the message bubbles
   const renderBubble = (props) => {
     return <Bubble
       {...props}
@@ -52,6 +59,7 @@ const Chat = ({ route,navigation }) => {
 
   return (
     <View style={[styles.container, { backgroundColor }]}>
+      {/* GiftedChat component renders the chat UI */}
     <GiftedChat
       messages={messages}
       renderBubble={renderBubble}
@@ -60,6 +68,7 @@ const Chat = ({ route,navigation }) => {
         _id: 1
       }}
     />
+    {/* Conditional rendering for KeyboardAvoidingView */}
     { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null }
     {Platform.OS === "ios"?<KeyboardAvoidingView behavior="padding" />: null}
     </View>
@@ -67,6 +76,7 @@ const Chat = ({ route,navigation }) => {
   
 };
 
+// Styles for the Chat screen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
