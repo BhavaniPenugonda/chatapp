@@ -27,13 +27,14 @@ const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
   const db = getFirestore(app);
 
-  
+
   return (
   
     <NavigationContainer>
     <Stack.Navigator initialRouteName="Start">
         <Stack.Screen name="Start" component={Start} />
-        <Stack.Screen name="Chat" component={Chat}>
+        <Stack.Screen name="Chat" >
+        {props => <Chat {...props} db={db} />}  {/* Pass db as a prop */}
           
         </Stack.Screen>
       </Stack.Navigator>
