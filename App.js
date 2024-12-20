@@ -34,7 +34,7 @@ const app = initializeApp(firebaseConfig);
     <Stack.Navigator initialRouteName="Start">
         <Stack.Screen name="Start" component={Start} />
         <Stack.Screen name="Chat" >
-        {props => <Chat {...props} db={db} />}  {/* Pass db as a prop */}
+        {props => <Chat db={db} {...props} />}  {/* Pass db as a prop */}
           
         </Stack.Screen>
       </Stack.Navigator>
