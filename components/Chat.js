@@ -40,7 +40,7 @@ const Chat = ({ db,route,navigation }) => {
  return () => {
    if (unsubMessages) unsubMessages();
  }
-  }, [userName, navigation]);
+  }, [db,userName, navigation]);
 
 // Function to handle sending new messages
 const onSend = (newMessages) => {
