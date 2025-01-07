@@ -23,6 +23,7 @@ const Chat = ({ route,navigation,isConnected }) => {
   const {userID, userName , backgroundColor } = route.params;
 
   useEffect(() => {
+    if (isConnected === true) {
     navigation.setOptions({ title: userName });
     const q = query(collection(db, "messages"), orderBy("createdAt", "desc"));
  const unsubMessages = onSnapshot(q, (docs) => {
@@ -35,8 +36,10 @@ const Chat = ({ route,navigation,isConnected }) => {
        
      })
    })
+   cacheMessages(newMessages);
    setMessages(newMessages);
- })
+ });
+} else loadCachedMessages();
 
  return () => {
    if (unsubMessages) unsubMessages();
