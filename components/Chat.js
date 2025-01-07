@@ -106,14 +106,15 @@ const onSend = (newMessages) => {
       {/* GiftedChat component renders the chat UI */}
     <GiftedChat
       messages={messages}
-      renderBubble={renderBubble}
-      renderInputToolbar={renderInputToolbar} // Pass the custom renderInputToolbar function
-        isTyping={isConnected}  // Optionally show typing indicator if connected
+      
       onSend={messages => onSend(messages)}
       user={{
         _id: userID,  // Pass the userId from route.params
         name: userName,  // Pass the userName from route.params
       }}
+      renderBubble={renderBubble}
+      renderInputToolbar={renderInputToolbar} // Pass the custom renderInputToolbar function
+        isTyping={isConnected}  // Optionally show typing indicator if connected
     />
     {/* Conditional rendering for KeyboardAvoidingView */}
     { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null }
