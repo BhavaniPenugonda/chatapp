@@ -9,6 +9,7 @@ import {
   collection,
   addDoc,
 } from "firebase/firestore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /* 
  
@@ -25,6 +26,11 @@ const Chat = ({ route,navigation,isConnected }) => {
   useEffect(() => {
     let unsubMessages;
     if (isConnected === true) {
+      // Unregister current onSnapshot() listener to avoid registering multiple listeners when
+      // useEffect code is re-executed.
+      if (unsubMessages) unsubMessages();
+      unsubMessages = null;
+
     navigation.setOptions({ title: userName });
     const q = query(collection(db, "messages"), orderBy("createdAt", "desc"));
    unsubMessages = onSnapshot(q, (docs) => {
@@ -47,11 +53,29 @@ const Chat = ({ route,navigation,isConnected }) => {
  }
   }, [db,userName, navigation,isConnected]);
 
+  // Function to cache messages
+  const cacheMessages = async (messagesToCache) => {
+    try {
+      await AsyncStorage.setItem('messages', JSON.stringify(messagesToCache));
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+// Function to load cached messages
+const loadCachedMessages = async () => {
+  const cachedLists = await AsyncStorage.getItem("messages") || [];
+  setLists(JSON.parse(cachedLists));
+}
+
+
 // Function to handle sending new messages
 const onSend = (newMessages) => {
   // Add the first message from the newMessages array to the Firestore "messages" collection
   addDoc(collection(db, "messages"), newMessages[0]);
 };
+
+
 
 // Custom bubble rendering function to style the message bubbles
   const renderBubble = (props) => {
@@ -68,11 +92,7 @@ const onSend = (newMessages) => {
     />
   }
    
-  // Function to load cached messages
-  const loadCachedLists = async () => {
-    const cachedLists = await AsyncStorage.getItem("messages") || [];
-    setLists(JSON.parse(cachedLists));
-  }
+  
 
 
   return (
