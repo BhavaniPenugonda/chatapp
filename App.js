@@ -56,7 +56,7 @@ const app = initializeApp(firebaseConfig);
           
 
 
-          {props => <ShoppingLists isConnected={connectionStatus.isConnected} db={db} {...props} />}
+          {props => <Chat isConnected={connectionStatus.isConnected} db={db} {...props} />}
 
         </Stack.Screen>
           
