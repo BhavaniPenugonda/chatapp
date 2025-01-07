@@ -92,7 +92,13 @@ const onSend = (newMessages) => {
     />
   }
    
-  
+  // Function to render the input toolbar
+  const renderInputToolbar = (props) => {
+    // Check if the device is connected to the internet
+    if (isConnected) return <InputToolbar {...props} />;
+    // If the device is not connected to the internet, disable the input toolbar
+    else return null;
+   }
 
 
   return (
