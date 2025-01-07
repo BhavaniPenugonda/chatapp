@@ -65,7 +65,7 @@ const Chat = ({ route,navigation,isConnected }) => {
 // Function to load cached messages
 const loadCachedMessages = async () => {
   const cachedLists = await AsyncStorage.getItem("messages") || [];
-  setLists(JSON.parse(cachedLists));
+  setMessages(JSON.parse(cachedLists));
 }
 
 
@@ -107,6 +107,8 @@ const onSend = (newMessages) => {
     <GiftedChat
       messages={messages}
       renderBubble={renderBubble}
+      renderInputToolbar={renderInputToolbar} // Pass the custom renderInputToolbar function
+        isTyping={isConnected}  // Optionally show typing indicator if connected
       onSend={messages => onSend(messages)}
       user={{
         _id: userID,  // Pass the userId from route.params
