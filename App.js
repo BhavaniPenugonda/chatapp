@@ -10,7 +10,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useNetInfo } from "@react-native-community/netinfo";
 import { useEffect } from "react";
-import { Alert } from "react-native";
+import { LogBox,Alert } from "react-native";
+
+
+LogBox.ignoreLogs(["AsyncStorage has been extracted from"]);
 
 // Create the navigator
 const Stack = createNativeStackNavigator();
