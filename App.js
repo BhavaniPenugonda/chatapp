@@ -4,7 +4,7 @@ import Chat from "./components/Chat";
 import Start from "./components/Start";
 import { initializeApp } from "firebase/app";
 import { getFirestore, disableNetwork, enableNetwork} from "firebase/firestore";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
