@@ -4,6 +4,7 @@ import Chat from "./components/Chat";
 import Start from "./components/Start";
 import { initializeApp } from "firebase/app";
 import { getFirestore, disableNetwork, enableNetwork} from "firebase/firestore";
+import Constants from 'expo-constants';
 
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -31,12 +32,12 @@ const App=()=> {
 
   //  web app Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC-KMEoV4hGIclNkdx3ZPvjDe3nZegi0xg",
-  authDomain: "chatapp-47886.firebaseapp.com",
-  projectId: "chatapp-47886",
-  storageBucket: "chatapp-47886.firebasestorage.app",
-  messagingSenderId: "4525910756",
-  appId: "1:4525910756:web:db6904f26a7a5521f7daf1"
+  apiKey: Constants.expoConfig.extra.FIREBASE_API_KEY,
+  authDomain: Constants.expoConfig.extra.FIREBASE_AUTH_DOMAIN,
+  projectId: Constants.expoConfig.extra.FIREBASE_PROJECT_ID,
+  storageBucket: Constants.expoConfig.extra.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: Constants.expoConfig.extra.FIREBASE_MESSAGING_SENDER_ID,
+  appId: Constants.expoConfig.extra.FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
