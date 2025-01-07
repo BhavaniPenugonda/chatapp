@@ -64,8 +64,8 @@ const Chat = ({ route,navigation,isConnected }) => {
 
 // Function to load cached messages
 const loadCachedMessages = async () => {
-  const cachedLists = await AsyncStorage.getItem("messages") || [];
-  setMessages(JSON.parse(cachedLists));
+  const cachedMessages = await AsyncStorage.getItem("messages") || [];
+  setMessages(JSON.parse(cachedMessages));
 }
 
 
