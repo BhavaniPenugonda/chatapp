@@ -16,6 +16,11 @@ import { LogBox, Alert } from "react-native";
 const Stack = createNativeStackNavigator();
 const App=()=> {
   const connectionStatus = useNetInfo();
+
+  useEffect(() => {
+    if (connectionStatus.isConnected === false) Alert.alert("Connection lost!")
+  }, [connectionStatus.isConnected]);
+
   //  web app Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyC-KMEoV4hGIclNkdx3ZPvjDe3nZegi0xg",
