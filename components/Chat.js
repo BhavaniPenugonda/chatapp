@@ -63,6 +63,12 @@ const onSend = (newMessages) => {
       }}
     />
   }
+   
+  // Function to load cached messages
+  const loadCachedLists = async () => {
+    const cachedLists = await AsyncStorage.getItem("messages") || [];
+    setLists(JSON.parse(cachedLists));
+  }
 
 
   return (
