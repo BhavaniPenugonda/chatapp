@@ -8,10 +8,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useNetInfo } from "@react-native-community/netinfo";
+import { useEffect } from "react";
+import { LogBox, Alert } from "react-native";
 
 // Create the navigator
 const Stack = createNativeStackNavigator();
 const App=()=> {
+  const connectionStatus = useNetInfo();
   //  web app Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyC-KMEoV4hGIclNkdx3ZPvjDe3nZegi0xg",
