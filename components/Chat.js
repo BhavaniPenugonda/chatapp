@@ -23,10 +23,11 @@ const Chat = ({ route,navigation,isConnected }) => {
   const {userID, userName , backgroundColor } = route.params;
 
   useEffect(() => {
+    let unsubMessages;
     if (isConnected === true) {
     navigation.setOptions({ title: userName });
     const q = query(collection(db, "messages"), orderBy("createdAt", "desc"));
- const unsubMessages = onSnapshot(q, (docs) => {
+   unsubMessages = onSnapshot(q, (docs) => {
    let newMessages = [];
    docs.forEach(doc => {
      newMessages.push({
@@ -44,7 +45,7 @@ const Chat = ({ route,navigation,isConnected }) => {
  return () => {
    if (unsubMessages) unsubMessages();
  }
-  }, [db,userName, navigation]);
+  }, [db,userName, navigation,isConnected]);
 
 // Function to handle sending new messages
 const onSend = (newMessages) => {
