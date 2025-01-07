@@ -16,7 +16,7 @@ import {
  * color of the screen based on the selection made in the Start screen.
  */
 
-const Chat = ({ route,navigation }) => {
+const Chat = ({ route,navigation,isConnected }) => {
   const db = route.params.db;
   const [messages, setMessages] = useState([]);
   
