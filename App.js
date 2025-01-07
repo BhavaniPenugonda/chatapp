@@ -51,12 +51,14 @@ const app = initializeApp(firebaseConfig);
     <NavigationContainer>
     <Stack.Navigator initialRouteName="Start">
         <Stack.Screen name="Start" component={Start} />
-        <Stack.Screen name="Chat"  component={Chat} 
-          isConnected={connectionStatus.isConnected}
-          initialParams={{ db }}  // Pass db as initialParams
+        <Stack.Screen name="Chat"  >
+          
+          
 
-        />
-        
+
+          {props => <ShoppingLists isConnected={connectionStatus.isConnected} db={db} {...props} />}
+
+        </Stack.Screen>
           
   
       </Stack.Navigator>

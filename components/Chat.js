@@ -17,14 +17,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
  * color of the screen based on the selection made in the Start screen.
  */
 
-const Chat = ({ route,navigation,isConnected }) => {
-  const db = route.params.db;
+const Chat = ({ db,route,navigation,isConnected }) => {
+  //const db = route.params.db;
   const [messages, setMessages] = useState([]);
   
   const {userID, userName , backgroundColor } = route.params;
+  let unsubMessages;
 
   useEffect(() => {
-    let unsubMessages;
+    
     if (isConnected === true) {
       // Unregister current onSnapshot() listener to avoid registering multiple listeners when
       // useEffect code is re-executed.
@@ -45,7 +46,7 @@ const Chat = ({ route,navigation,isConnected }) => {
    })
    cacheMessages(newMessages);
    setMessages(newMessages);
- });
+ })
 } else loadCachedMessages();
 
  return () => {
@@ -53,14 +54,7 @@ const Chat = ({ route,navigation,isConnected }) => {
  }
   }, [db,userName, navigation,isConnected]);
 
-  // Function to cache messages
-  const cacheMessages = async (messagesToCache) => {
-    try {
-      await AsyncStorage.setItem('messages', JSON.stringify(messagesToCache));
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
+  
 
 // Function to load cached messages
 const loadCachedMessages = async () => {
@@ -68,6 +62,15 @@ const loadCachedMessages = async () => {
   setMessages(JSON.parse(cachedMessages));
 }
 
+
+// Function to cache messages
+const cacheMessages = async (messagesToCache) => {
+  try {
+    await AsyncStorage.setItem('messages', JSON.stringify(messagesToCache));
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 // Function to handle sending new messages
 const onSend = (newMessages) => {
