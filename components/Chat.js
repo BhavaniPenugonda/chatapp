@@ -106,7 +106,7 @@ const onSend = (newMessages) => {
    }
 
    const renderCustomActions = (props) => {
-    return <CustomActions {...props} />;
+    return <CustomActions  onSend={onSend} {...props} />;
   };
   
   const renderCustomView = (props) => {
