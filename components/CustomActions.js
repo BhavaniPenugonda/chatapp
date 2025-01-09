@@ -1,6 +1,6 @@
 import { TouchableOpacity } from "react-native";
 
-const CustomActions = () => {
+const CustomActions = ({ wrapperStyle, iconTextStyle }) => {
 
   const onActionPress = () => {}
 
