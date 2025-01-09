@@ -19,7 +19,7 @@ import MapView from 'react-native-maps';
  * color of the screen based on the selection made in the Start screen.
  */
 
-const Chat = ({ db,route,navigation,isConnected }) => {
+const Chat = ({ db,route,navigation,isConnected ,storage}) => {
   //const db = route.params.db;
   const [messages, setMessages] = useState([]);
   
@@ -106,7 +106,7 @@ const onSend = (newMessages) => {
    }
 
    const renderCustomActions = (props) => {
-    return <CustomActions  onSend={onSend} {...props} />;
+    return <CustomActions userID={userID} storage={storage} {...props} />;
   };
   
   const renderCustomView = (props) => {
