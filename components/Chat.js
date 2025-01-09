@@ -10,6 +10,7 @@ import {
   addDoc,
 } from "firebase/firestore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import CustomActions from './CustomActions';
 
 /* 
  
@@ -103,6 +104,9 @@ const onSend = (newMessages) => {
     else return null;
    }
 
+   const renderCustomActions = (props) => {
+    return <CustomActions {...props} />;
+  };
 
   return (
     <View style={[styles.container, { backgroundColor }]}>
@@ -118,6 +122,7 @@ const onSend = (newMessages) => {
       renderBubble={renderBubble}
       renderInputToolbar={renderInputToolbar} // Pass the custom renderInputToolbar function
         isTyping={isConnected}  // Optionally show typing indicator if connected
+      renderActions={renderCustomActions}
     />
     {/* Conditional rendering for KeyboardAvoidingView */}
     { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null }
