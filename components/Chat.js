@@ -123,6 +123,7 @@ const onSend = (newMessages) => {
       renderInputToolbar={renderInputToolbar} // Pass the custom renderInputToolbar function
         isTyping={isConnected}  // Optionally show typing indicator if connected
       renderActions={renderCustomActions}
+      renderCustomView={renderCustomView}
     />
     {/* Conditional rendering for KeyboardAvoidingView */}
     { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null }
