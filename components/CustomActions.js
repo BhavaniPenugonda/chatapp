@@ -38,7 +38,6 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend,storage,userID}) =>
     if (permissions?.granted) {
       let result = await ImagePicker.launchImageLibraryAsync();
       if (!result.canceled) uploadAndSendImage(result.assets[0].uri);
-        
       else Alert.alert("Permissions haven't been granted.");
     }
   }
@@ -48,7 +47,6 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend,storage,userID}) =>
     if (permissions?.granted) {
       let result = await ImagePicker.launchCameraAsync();
       if (!result.canceled) await uploadAndSendImage(result.assets[0].uri);
-       
       else Alert.alert("Permissions haven't been granted.");
     }
   }
