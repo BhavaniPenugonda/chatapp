@@ -52,7 +52,7 @@ npm or Yarn
 Expo CLI (can be installed globally)
 
 **Setup Instructions**
-Clone the repository: git clone https://github.com/Bhavanipenugonda/Chatapp.git cd Chatapp
+Clone the repository: git clone https://github.com/Bhavanipenugonda/chatapp.git cd chatapp
 
 **Install dependencies:** Make sure to have [Node.js v18.20.4] (https://nodejs.org/en/learn/getting-started/how-to-install-nodejs) installed. Then run this command in a terminal to install the dependencies in the project folder: npm install Then install the Expo CLI as a global dependency (if you haven't already): npm install -g expo-cli
 
