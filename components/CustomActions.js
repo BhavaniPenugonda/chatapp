@@ -37,8 +37,12 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend,storage,userID}) =>
     let permissions = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (permissions?.granted) {
       let result = await ImagePicker.launchImageLibraryAsync();
-      if (!result.canceled) uploadAndSendImage(result.assets[0].uri);
-      else Alert.alert("Permissions haven't been granted.");
+      if (!result.canceled) {
+        await uploadAndSendImage(result.assets[0].uri);
+      }
+      else {
+        Alert.alert("Permissions haven't been granted.");
+      }
     }
   }
 
@@ -46,8 +50,12 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend,storage,userID}) =>
     let permissions = await ImagePicker.requestCameraPermissionsAsync();
     if (permissions?.granted) {
       let result = await ImagePicker.launchCameraAsync();
-      if (!result.canceled) await uploadAndSendImage(result.assets[0].uri);
-      else Alert.alert("Permissions haven't been granted.");
+      if (!result.canceled) {
+        await uploadAndSendImage(result.assets[0].uri);
+      }
+      else{
+         Alert.alert("Permissions haven't been granted.");
+      }
     }
   }
 
@@ -62,8 +70,12 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend,storage,userID}) =>
             latitude: location.coords.latitude,
           },
         });
-      } else Alert.alert("Error occurred while fetching location");
-    } else Alert.alert("Permissions haven't been granted.");
+      } else {
+        Alert.alert("Error occurred while fetching location");
+      }
+    } else {
+    Alert.alert("Permissions haven't been granted.");
+    }
   }
 
   const generateReference = (uri) => {
