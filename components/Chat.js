@@ -127,6 +127,16 @@ const onSend = (newMessages) => {
           />
       );
     }
+
+    // Add rendering for images
+  if (currentMessage.image) {
+    return (
+      <Image
+        source={{ uri: currentMessage.image }}
+        style={{ width: 150, height: 150, borderRadius: 13, margin: 3 }}
+      />
+    );
+  }
     return null;
   }
 
