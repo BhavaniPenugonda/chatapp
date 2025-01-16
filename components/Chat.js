@@ -43,9 +43,9 @@ const Chat = ({ db,route,navigation,isConnected ,storage}) => {
        id: doc.id,
        ...doc.data(),
        createdAt: new Date(doc.data().createdAt.toMillis()),
-       user: data().user,
-       image: data().image || null,
-       location: data().location || null,
+       user: doc.data().user,
+       image: doc.data().image || null,
+       location: doc.data().location || null,
      })
    })
    cacheMessages(newMessages);
