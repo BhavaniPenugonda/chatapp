@@ -34,7 +34,7 @@ const Chat = ({ db,route,navigation,isConnected ,storage}) => {
    let newMessages = [];
    docs.forEach(doc => {
     const data = doc.data();
-    const createdAt = messageData.createdAt ? new Date(messageData.createdAt.toMillis()) : new Date();
+    const createdAt = data.createdAt ? new Date(data.createdAt.toMillis()) : new Date();
 
      newMessages.push({
        id: doc.id,
