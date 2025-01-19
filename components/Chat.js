@@ -33,13 +33,17 @@ const Chat = ({ db,route,navigation,isConnected ,storage}) => {
    unsubMessages = onSnapshot(q, (docs) => {
    let newMessages = [];
    docs.forEach(doc => {
+    const data = doc.data();
+    const createdAt = messageData.createdAt ? new Date(messageData.createdAt.toMillis()) : new Date();
+
      newMessages.push({
        id: doc.id,
-       ...doc.data(),
-       createdAt: new Date(doc.data().createdAt.toMillis()),
-       user: doc.data().user,
-       image: doc.data().image || null,
-       location: doc.data().location || null,
+       text: data.text,
+       ...data,
+       createdAt,
+       user: data.user,
+       image: data.image || null,
+       location: data.location || null,
      })
    })
    cacheMessages(newMessages);
