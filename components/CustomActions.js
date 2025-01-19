@@ -88,16 +88,26 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend,storage,userID}) =>
   }
 
   const uploadAndSendImage = async (imageURI) => {
+    try{
     const uniqueRefString = generateReference(imageURI);
     const newUploadRef = ref(storage, uniqueRefString);
     const response = await fetch(imageURI);
     const blob = await response.blob();
-    uploadBytes(newUploadRef, blob).then(async (snapshot) => {
+    const snapshot = await uploadBytes(newUploadRef, blob);
+    
       const imageURL = await getDownloadURL(snapshot.ref)
-      console.log("Image URL: ", imageURL);
-      onSend({ image: imageURL })
-    });
-  }
+      //console.log("Image URL: ", imageURL);
+      onSend({
+        _id: `${new Date().getTime()}-${userID}`, // Ensure _id is defined
+        user: { _id: userID, name: "User" }, // Ensure user is defined
+        image: imageURL,
+      });
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      Alert.alert("Error uploading image. Please try again.");
+    }
+      
+  };
 
   return (
     <TouchableOpacity style={styles.container} onPress={onActionPress}>
