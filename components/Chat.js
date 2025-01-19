@@ -2,13 +2,7 @@
 import React, { useEffect,useState } from 'react';
 import { View,  StyleSheet, KeyboardAvoidingView,Platform,Alert} from 'react-native';
 import { GiftedChat ,Bubble,InputToolbar} from "react-native-gifted-chat";
-import {
-  onSnapshot,
-  query,
-  orderBy,
-  collection,
-  addDoc,
-} from "firebase/firestore";
+import {onSnapshot,query,orderBy,collection,addDoc,serverTimestamp} from "firebase/firestore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CustomActions from './CustomActions';
 import MapView from 'react-native-maps';
@@ -78,8 +72,18 @@ const cacheMessages = async (messagesToCache) => {
 
 // Function to handle sending new messages
 const onSend = (newMessages) => {
+  const [message] = newMessages;
+
   // Add the first message from the newMessages array to the Firestore "messages" collection
-  addDoc(collection(db, "messages"), newMessages[0]);
+  addDoc(collection(db, "messages"), {
+    _id: message._id,
+      text: message.text || "",
+      createdAt: serverTimestamp(),
+      user: message.user,
+      image: message.image || null,
+      location: message.location || null,
+  });
+  setMessages((prev) => GiftedChat.append(prev, newMessages));
 };
 
 
