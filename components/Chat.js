@@ -1,6 +1,6 @@
 
 import React, { useEffect,useState } from 'react';
-import { View,  StyleSheet, KeyboardAvoidingView,Platform} from 'react-native';
+import { View,  StyleSheet, KeyboardAvoidingView,Platform,Alert} from 'react-native';
 import { GiftedChat ,Bubble,InputToolbar} from "react-native-gifted-chat";
 import {
   onSnapshot,
@@ -108,7 +108,7 @@ const onSend = (newMessages) => {
    }
 
    const renderCustomActions = (props) => {
-    return <CustomActions userID={userID}  storage={storage} {...props} />;
+    return <CustomActions userID={userID}  storage={storage} onSend={(message) => onSend([message])} {...props} />;
   };
   
   const renderCustomView = (props) => {
