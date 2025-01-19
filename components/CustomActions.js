@@ -65,6 +65,8 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend,storage,userID}) =>
       const location = await Location.getCurrentPositionAsync({});
       if (location) {
         onSend({
+          _id: `${new Date().getTime()}-${userID}`,
+          user: { _id: userID, name: "User" }, 
           location: {
             longitude: location.coords.longitude,
             latitude: location.coords.latitude,
